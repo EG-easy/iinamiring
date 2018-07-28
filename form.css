@@ -1,0 +1,234 @@
+
+/*以下web---------------------------------------------------------------------------------------------------------*/
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.header_box{
+  padding: 0.5em 1em;
+  background-color: #2C0A1E;
+  margin: auto;
+  max-width: 50%;
+}
+
+.header h1{
+  text-align: center;
+  text-shadow:
+  1px 1px 0px #7BF5FF,
+  -1px -1px 0px #FF3D3D;
+  color: #FFF;
+  text-align: center;
+}
+
+.header p{
+ text-align: center;
+ margin-top: 3px;
+ color: #FFF;
+}
+
+
+img{
+ border-radius: 5px;
+ max-width: 100%;
+ height: auto;
+}
+
+
+
+.tabs {
+margin: 55px auto;
+padding-bottom: 40px;
+background-color: #fff;
+box-shadow: 0 0 10px #9B9B9B;
+width: 60%;
+border-radius: 10px;
+}
+
+/*タブのスタイル*/
+.tab_item {
+width: calc(100%/2);
+height: 55px;
+border-bottom: 1px solid #B9B9B9;
+background-color: #FFF;
+line-height: 50px;
+font-size: 20px;
+color: #4A4A4A;
+display: block;
+float: left;
+text-align: center;
+font-weight: bold;
+transition: all 0.2s ease;
+border-radius: 10px;
+cursor: pointer;
+}
+
+.tab_item:hover {
+opacity: 0.75;
+}
+
+/*ラジオボタンを全て消す*/
+input[name="tab_item"] {
+display: none;
+}
+/*タブ切り替えの中身のスタイル*/
+.tab_content {
+font-size: 20px;
+font-weight: bold;
+text-align: center;
+display: none;
+padding: 30px 30px 0;
+clear: both;
+overflow: hidden;
+height: auto;
+color: #4A4A4A;
+}
+
+
+.original_btn {
+ font-size: 15px;
+ padding: 20px 40px;
+ cursor: pointer;
+ border-radius: 5px;
+ color: #666;
+}
+
+.icon {
+ font-size: 20px;
+ margin: 0 10px 0 15px;
+ padding: 3px 30px;
+ border-radius: 30px;
+ background: #666;
+ color: #fff;
+ display: inline-block;
+}
+/*選択されているタブのコンテンツのみを表示*/
+#twitterID:checked ~ #twitterID_content,
+#upload:checked ~ #upload_content {
+display: block;
+}
+
+.icon.select {
+ background: #ff5050;
+ color: #fff;
+}
+
+.filename {
+ display: inline-block;
+ font-size: 12px;
+}
+
+
+/*選択されているタブのスタイルを変える*/
+.tabs input:checked + .tab_item {
+background-color: #23f4ee; /* Old browsers */
+background: -moz-linear-gradient(45deg, #23f4ee 6%, #23f4ee 6%, #2c0a1e 9%, #2c0a1e 92%, #2c0a1e 92%, #ff1b55 93%); /* FF3.6-15 */
+background: -webkit-linear-gradient(45deg, #23f4ee 6%,#23f4ee 6%,#2c0a1e 9%,#2c0a1e 92%,#2c0a1e 92%,#ff1b55 93%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(45deg, #23f4ee 6%,#23f4ee 6%,#2c0a1e 9%,#2c0a1e 92%,#2c0a1e 92%,#ff1b55 93%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#23f4ee', endColorstr='#ff1b55',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+color: #FFF;
+}
+
+.input_ID{
+  padding: 10px 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  width: 30%;
+  height: 30px;
+  border: solid 2px #4A90E2;
+}
+
+
+.selection{
+  text-align: center;
+  solid
+  padding-left: 0;
+}
+
+.selection h1{
+  font-size: 20px;
+  margin-top: 55px;
+  font-weight: bold;
+  color: #4A4A4A;
+  padding-left: 0;
+}
+
+ul.image_list li {
+  /* liが横並びになるようにします。 */
+  display: inline-block;
+  padding-left: 0px;
+}
+ul.image_list li .image_box {
+  width: 150px;
+  height: 150px;
+  /* チェックボックスの親要素にrelativeを指定しておきます。 */
+  position: relative;
+}
+.image_box img.thumbnail {
+  width: 100%;
+  height: 100%;
+  /* 画像にカーソルを合わせたときに、
+  カーソルが指のマークになるようにします。 */
+  cursor: pointer;
+}
+.image_box img.thumbnail.checked {
+  /* チェックが入った状態だと、枠が表示されるようにします。 */
+  border: 6px solid blue;
+  /* 線をwidthとheightに含めるようにします。 */
+  box-sizing: border-box;
+}
+.image_box .disabled_checkbox {
+  /* チェックボックスの位置は絶対位置にします。 */
+  position: absolute;
+  /* チェックボックスは、親要素の右上から12pxの位置に配置します。 */
+  top: 12px;
+  right: 12px;
+  /* チェック前は非表示にしておきます。 */
+  display: none;
+  /* チェックボックスを大きくします。 */
+  transform: scale(2);
+  /* チェックボックスにカーソルを合わせたときに、
+  カーソルが指のマークになるようにします。 */
+  cursor: pointer;
+}
+.image_box img.thumbnail.checked + .disabled_checkbox {
+  /* 画像にcheckedクラスが指定されたときは、
+  チェックボックスの非表示を解除します。 */
+  display: block;
+}
+
+
+
+
+.action{
+  text-align: center;
+}
+
+
+.btn{
+    position: relative;
+    font-size: 30px;
+    border-radius: 40px;
+    display: inline-block;
+    font-weight: bold;
+    text-decoration: none;
+    color: #FFF;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.73);
+    padding: 15px 100px;
+    margin-top: 55px;
+    background: #2C0A1E;
+    border-top: solid 3px #2C0A1E;
+    border-bottom: solid 3px #2C0A1E;
+    text-shadow:
+    1px 1px 0px #7BF5FF,
+    -1px -1px 0px #FF3D3D;
+    transition: .4s;
+    cursor: pointer;
+}
+
+
+.btn:hover {
+    text-shadow: -6px 0px 15px rgba(255, 255, 240, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
+}

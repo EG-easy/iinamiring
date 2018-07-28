@@ -1,0 +1,108 @@
+@import url(https://fonts.googleapis.com/css?family=ubuntu);
+body {
+  margin: 0;
+  font-family: 'ubuntu', medium Italic;
+  text-align: center;
+}
+.holder,
+.first,
+.second,
+.third {
+  height: 100vh;
+  width: 100vw;
+}
+.first,
+.second,
+.third {
+  position: absolute;
+}
+.second,
+.third {
+  opacity: 0;
+}
+.holder {
+  height: 100vh;
+  position: relative;
+  z-index: 1;
+}
+.first {
+  animation: first 10s infinite;
+  background: linear-gradient(#2C0A1E, #FF3D3D);
+  z-index: 10;
+}
+  @keyframes first {
+    0% {opacity: 1.0;}
+    10% {opacity: 0.8;}
+    20% {opacity: 0.6;}
+    30% {opacity: 0.4;}
+    40% {opacity: 0.2;}
+    50% {opacity: 0.1;}FF3D3D
+    60% {opacity: 0.2;}
+    70% {opacity: 0.4;}
+    80% {opacity: 0.6;}
+    90% {opacity: 0.8;}
+    100% {opacity: 1.0;}
+  }
+
+.second {
+  animation: second 10s infinite; animation-delay: 2s;
+  background: linear-gradient(#7BF5FF, #2C0A1E);
+  z-index: 20;
+}
+  @keyframes second {
+    0% {opacity: 0;}
+    10% {opacity: 0.2;}
+    20% {opacity: 0.4;}
+    30% {opacity: 0.6;}
+    40% {opacity: 0.8;}
+    50% {opacity: 1.0;}
+    60% {opacity: 0.8;}
+    70% {opacity: 0.6;}
+    80% {opacity: 0.4;}
+    90% {opacity: 0.2;}
+    100% {opacity: 0;}
+  }
+
+.third {
+  animation: third 10s infinite;
+  animation-delay: 8s;
+  background: linear-gradient(#FF3D3D, #7BF5FF);
+  z-index: 30;
+}
+  @keyframes third {
+    0% {opacity: 0;}
+    10% {opacity: 0.2;}
+    20% {opacity: 0.4;}
+    30% {opacity: 0.6;}
+    40% {opacity: 0.8;}
+    50% {opacity: 1.0;}
+    60% {opacity: 0.8;}
+    70% {opacity: 0.6;}
+    80% {opacity: 0.4;}
+    90% {opacity: 0.2;}
+    100% {opacity: 0;}
+  }
+
+.txt {
+  margin-top: calc(50vh - 43px);
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+}
+h1 {
+  color: white;
+  text-shadow:
+  3px 3px 0 #FF3D3D,
+  -3px -3px 0 #7BF5FF;
+  font-size: 80px;
+  font-weight: 320;
+  margin: auto;
+}
+p {
+  color: white;
+  text-shadow:
+  2px 2px 0 #FF3D3D,
+  -2px -2px 0 #7BF5FF;
+  font-size: 40px;
+  margin-top: 26px;
+}

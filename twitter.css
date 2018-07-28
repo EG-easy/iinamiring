@@ -1,0 +1,107 @@
+
+body{
+  min-width: 100%;
+}
+
+.wrap{
+   overflow: hidden;
+}
+
+.container{
+  font-size: 25px;
+  text-align: center;
+  margin: 50px auto;
+  font-weight: bold;
+}
+
+.showimage p{
+  text-align: center;
+}
+
+.showimage{
+  margin: 50px auto;
+  text-align: center;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+}
+
+.button {
+  margin-bottom: 15px;
+  margin-top: 50px;
+  font-size: 30px;
+  font-weight: bold;/*太字に*/
+  text-decoration: none;/*下線消す*/
+  background: #4A90E2;/*背景を水色に*/
+  color:white;/*文字を白に*/
+  padding:15px 40px;/*内側の余白*/
+  border-radius: 50px;/*角を丸くする*/
+  font-family: 'Avenir','Arial';/*フォントをいい感じに*/
+  }
+
+/*以下カーソルを当てたとき*/
+.button:hover {
+  background: #2C0A1E;/*背景色をシルバーに*/
+  font-size: 30px;
+  text-shadow:
+  1px 1px 0px #7BF5FF,
+  -1px -1px 0px #FF3D3D;
+  text-decoration: none;/*下線を消す*/
+  }
+
+.note{
+  margin: auto;
+  width: 50%;
+  text-align: center;
+  padding: 20px 20px;
+  border: solid 2px #2C0A1E;
+  border-radius: 20px;
+}
+
+.note span{
+  font-weight: bold;
+}
+
+.twitter-share-button{
+  display: block;
+    height: 20px;
+    margin: auto;
+    border-radius: 10px;        /* CSS3草案 */
+    -webkit-border-radius: 10px;    /* Safari,Google Chrome用 */
+    -moz-border-radius: 10px;   /* Firefox用 */
+    text-decoration: none;
+    color: #fff;
+    background: #55acee;
+}
+
+.member{
+  text-align: center;
+  color: #4A4A4A;
+  border-radius: 30px;
+  margin-bottom: 20px
+}
+
+.member p{
+  font-weight: bold;
+}
+
+.member a {
+ font-family: "ubuntu", medium;
+ text-decoration: none;
+ font-size: 25px;
+ color: #4A4A4A;
+ text-shadow:
+ 1px 1px 0 #7BF5FF,
+ -1px -1px 0 #FF3D3D;
+}
+
+a:hover {
+  color: #4A4A4A;
+  text-shadow:
+  1px 1px 0 #7BF5FF,
+  -1px -1px 0 #FF3D3D;
+  font-size: 35px;
+  font-weight: bold;
+  }

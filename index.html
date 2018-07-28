@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> -->
+  <meta charset="UTF-8">
+  <title>誰でもリング</title>
+  <link rel= "stylesheet" type="text/css" href="form.css">
+  <link rel="stylesheet" href="mobile.css" type="text/css" media="screen and (max-width:1024px)">
+  <link rel="shortcut icon" href="./img/favicon.png" >
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <head prefix="og: https://iinamiring.com/ns# fb: https://iinamiring.com/ns/fb# article: https://iinamiring.com/ns/article#">
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta property="og:title" content="#誰でもリング" />
+  <meta property="og:type" content="web" />
+  <meta property="og:url" content="https://iinamiring.com" />
+  <meta property="og:image" content="https://iinamiring.com/img/eyecatch.png" />
+  <meta property="og:site_name" content="#誰でもリング" />
+  <meta property="og:description" content="平成最後の夏、誰でもリングをつけてイイ波乗ろう！" />
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-122926244-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-122926244-1');
+  </script>
+</head>
+
+
+<body>
+
+<div class="wrap">
+
+  <div class="header_box">
+    <div class = "header">
+      <h1>#誰でもリング</h1>
+      <p>平成最後の夏、twitterのプロフィールに誰でもリングをつけてイイ波乗ろう！</p>
+    </div>
+  </div>
+
+
+  <div class="tabs">
+    <input id="twitterID" type="radio" name="tab_item" checked>
+    <label class="tab_item" for="twitterID">twitterIDで作る</label>
+
+    <input id="upload" type="radio" name="tab_item">
+    <label class="tab_item" for="upload">アップロード</label>
+
+    <div class="tab_content" id="twitterID_content">
+     <div class="tab_content_description">
+      <p class="c-txtsp">1. twitterIDを入力する</p>
+
+      <form  class ="upload" action="twitter.php" method="post" enctype="multipart/form-data">
+       <input class="input_ID" type="text" name="params_a" placeholder="twitterIDを入力" />
+
+       <div class = "selection">
+
+        <h1>2.デザインを選択する</h1>
+
+        <div class = "contents">
+         <ul class="image_list" style="padding-left: 0;">
+           <li>
+             <div class="image_box">
+              <label>
+               <img class="thumbnail" src="./img/sample1.png">
+               <input class="disabled_checkbox" type="radio" name="radio" value="1" checked >
+              </label>
+             </div>
+           </li>
+
+           <li>
+             <div class="image_box">
+              <label>
+               <img class="thumbnail" src="./img/sample2.png">
+               <input class="disabled_checkbox" type="radio" name="radio" value="2" >
+              </label>
+             </div>
+           </li>
+
+           <li>
+             <div class="image_box">
+              <label>
+               <img class="thumbnail" src="./img/sample3.png">
+               <input class="disabled_checkbox" type="radio" name="radio" value="3" >
+              </label>
+             </div>
+           </li>
+           <li>
+             <div class="image_box">
+              <label>
+               <img class="thumbnail" src="./img/sample4.png">
+               <input class="disabled_checkbox" type="radio" name="radio" value="4" >
+              </label>
+             </div>
+           </li>
+         </ul>
+       </div>
+     </div>
+
+     <div class="action">
+      <input class="btn" type="submit" value="#誰でもリングを作成する" />
+    </div>
+  </form>
+
+</div>
+</div>
+
+<div class="tab_content" id="upload_content">
+ <div class="tab_content_description">
+  <p class="c-txtsp">1. 画像を選択する</p>
+
+  <form class ="upload" action="upload.php" method="post" enctype="multipart/form-data">
+
+    <div id="js-selectFile">
+     <input id="js-upload" type="file" name="image" style="display:none" >
+
+     <button type="button" class="original_btn">写真を選択</button>
+     <span class="icon">未選択</span>
+   </div>
+   <div class = "selection">
+     <h1>2.デザインを選択する</h1>
+
+     <div class = "contents">
+       <ul class="image_list">
+         <li>
+           <div class="image_box">
+            <label>
+             <img class="thumbnail" src="./img/sample1.png">
+             <input class="disabled_checkbox" type="radio" name="radio" value="1" checked />
+            </label>
+           </div>
+         </li>
+
+         <li>
+           <div class="image_box">
+            <label>
+             <img class="thumbnail" src="./img/sample2.png">
+             <input class="disabled_checkbox" type="radio" name="radio" value="2" >
+            </label>
+           </div>
+         </li>
+
+         <li>
+           <div class="image_box">
+            <label>
+             <img class="thumbnail" src="./img/sample3.png">
+             <input class="disabled_checkbox" type="radio" name="radio" value="3" >
+            </label>
+           </div>
+         </li>
+         <li>
+           <div class="image_box">
+            <label>
+             <img class="thumbnail" src="./img/sample4.png">
+             <input class="disabled_checkbox" type="radio" name="radio" value="4" >
+            </label>
+           </div>
+         </li>
+       </ul>
+     </div>
+   </div>
+ </div>
+
+ <div class="action">
+  <input class="btn" type="submit" value="#誰でもリングを作成する" />
+</div>
+</form>
+
+</div>
+</div>
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="./form.js"></script>
+</body>
+</html>
