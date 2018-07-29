@@ -1,8 +1,10 @@
 <?php 
 function uploadImage($tmpName, $dir, $width2, $height2){
+
     //MIMEタイプという画像の種類を関数を使って取得
     $finfo = new finfo(FILEINFO_MIME_TYPE);
     $mime = $finfo->file($tmpName);
+
     //加工前のファイルをフォーマット別に読み出す
     if($mime == 'image/jpeg' || $mime == 'image/pjpeg'){
         $ext = '.jpg';
@@ -17,6 +19,7 @@ function uploadImage($tmpName, $dir, $width2, $height2){
         // リダイレクト先のURLへ転送する
         $url = 'https://iinamiring.com/badrequests/wrongformat.html';
         header('Location: ' . $url, true, 301);
+
         // すべての出力を終了
         exit;
     }
@@ -35,6 +38,7 @@ function uploadImage($tmpName, $dir, $width2, $height2){
     imagepng($image3, 'sample_COLORIZE.png');
     //画像を破棄する（保持するメモリを解放）
     } else {
+
     	   // リダイレクト先のURLへ転送する
         $url = 'https://iinamiring.com/badrequests/404.html';
         header('Location: ' . $url, true, 301);
@@ -50,6 +54,7 @@ function uploadImage($tmpName, $dir, $width2, $height2){
     imagepng($image4, 'sample_COLORIZE.png');
     //画像を破棄する（保持するメモリを解放）
     } else {
+
     	   // リダイレクト先のURLへ転送する
         $url = 'https://iinamiring.com/badrequests/404.html';
         header('Location: ' . $url, true, 301);
@@ -62,6 +67,7 @@ function uploadImage($tmpName, $dir, $width2, $height2){
     //赤にした画像を、ちょっとずらして透明にして重ねる
     imagecopymerge($image2, $image4, -8, -2, 0, 0, 400, 400, 60);
     imagedestroy($image4);
+
     //コピーする画像2枚目を取得(黄色)
     $designImage = "./img/frame".$_POST['radio'].".png";
     $frame_im = imagecreatefrompng($designImage);
@@ -69,10 +75,12 @@ function uploadImage($tmpName, $dir, $width2, $height2){
     //この時、dst_x(貼り付け先のx座標)に200を指定することで、貼り付け位置を下にずらす
     imagecopy($image2, $frame_im, 0, 0, 0, 0, 400, 400);
     imagedestroy($frame_im);
+
     // imagepng( $image2, "final.png"); //PNG画像で保存する場合
     if(!file_exists($dir)){
         mkdir($dir, 0777, true);
     }
+
     $filename = sha1(microtime() . $_SERVER['REMOTE_ADDR'] . $tmpName) . $ext;
     $saveTo = rtrim($dir, '/\\') . '/' . $filename;
  
@@ -84,12 +92,14 @@ function uploadImage($tmpName, $dir, $width2, $height2){
     } else if($ext == '.gif'){
         imagegif($image2, $saveTo);
     }
+
     // print("<img src=\"{$saveTo}\">");
     echo "<img src =\"$saveTo\">";
     
     // 読み出したファイルは消去
     imagedestroy($image1);
     imagedestroy($image2);
+
     return $saveTo;
 }
 
@@ -97,14 +107,17 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
     
     $request_url = 'https://api.twitter.com/1.1/users/show.json' ;      // エンドポイント
     $request_method = 'GET' ;
+
     // パラメータA (オプション)
     $params_a = array(
         // "user_id" => "1528352858",
         "screen_name" => $_POST["params_a"],
 //      "include_entities" => "true",
     ) ;
+
     // キーを作成する (URLエンコードする)
     $signature_key = rawurlencode( $api_secret ) . '&' . rawurlencode( $access_token_secret ) ;
+
     // パラメータB (署名の材料用)
     $params_b = array(
         'oauth_token' => $access_token ,
@@ -114,6 +127,7 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
         'oauth_nonce' => microtime() ,
         'oauth_version' => '1.0' ,
     ) ;
+
     // パラメータAとパラメータBを合成してパラメータCを作る
     $params_c = array_merge( $params_a , $params_b ) ;
     // 連想配列をアルファベット順に並び替える
@@ -124,6 +138,7 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
     $request_params = str_replace( array( '+' , '%7E' ) , array( '%20' , '~' ) , $request_params ) ;
     // 変換した文字列をURLエンコードする
     $request_params = rawurlencode( $request_params ) ;
+
     // リクエストメソッドをURLエンコードする
     // ここでは、URL末尾の[?]以下は付けないこと
     $encoded_request_method = rawurlencode( $request_method ) ;
@@ -133,6 +148,7 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
  
     // リクエストメソッド、リクエストURL、パラメータを[&]で繋ぐ
     $signature_data = $encoded_request_method . '&' . $encoded_request_url . '&' . $request_params ;
+
     // キー[$signature_key]とデータ[$signature_data]を利用して、HMAC-SHA1方式のハッシュ値に変換する
     $hash = hash_hmac( 'sha1' , $signature_data , $signature_key , TRUE ) ;
     // base64エンコードして、署名[$signature]が完成する
@@ -141,6 +157,7 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
     $params_c['oauth_signature'] = $signature ;
     // パラメータの連想配列を[キー=値,キー=値,...]の文字列に変換する
     $header_params = http_build_query( $params_c , '' , ',' ) ;
+
     // リクエスト用のコンテキスト
     $context = array(
         'http' => array(
@@ -150,10 +167,12 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
             ) ,
         ) ,
     ) ;
+
     // パラメータがある場合、URLの末尾に追加
     if( $params_a ) {
         $request_url .= '?' . http_build_query( $params_a ) ;
     }
+
     // cURLを使ってリクエスト
     $curl = curl_init() ;
     curl_setopt( $curl, CURLOPT_URL , $request_url ) ;
@@ -162,25 +181,30 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
     curl_setopt( $curl, CURLOPT_SSL_VERIFYPEER , false ) ;  // 証明書の検証を行わない
     curl_setopt( $curl, CURLOPT_RETURNTRANSFER , true ) ;   // curl_execの結果を文字列で返す
     curl_setopt( $curl, CURLOPT_HTTPHEADER , $context['http']['header'] ) ; // ヘッダー
+
     curl_setopt( $curl , CURLOPT_TIMEOUT , 5 ) ;    // タイムアウトの秒数
     $res1 = curl_exec( $curl ) ;
     $res2 = curl_getinfo( $curl ) ;
     curl_close( $curl ) ;
+
     // 取得したデータ
     $json = substr( $res1, $res2['header_size'] ) ;     // 取得したデータ(JSONなど)
     $header = substr( $res1, 0, $res2['header_size'] ) ;    // レスポンスヘッダー (検証に利用したい場合にどうぞ)
+
     // JSONをオブジェクトに変換
     $obj = json_decode( $json, true);
     // 画像のURLを代入
     $normal_url = $obj["profile_image_url"]; 
     //画像サイズの調整
     $square_url = str_replace( "_normal.", "_400x400.", $normal_url ) ;
+
     //画像ファイルデータを取得
     $img_data = file_get_contents($square_url);
     //MIMEタイプの取得
     $finfo = finfo_open(FILEINFO_MIME_TYPE);
     $mime = finfo_buffer($finfo, $img_data);
     finfo_close($finfo);
+
         //加工前のファイルをフォーマット別に読み出す
     if($mime == 'image/jpeg' || $mime == 'image/pjpeg'){
         $ext = '.jpg';
@@ -195,6 +219,7 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
         // リダイレクト先のURLへ転送する
                 $url = 'https://iinamiring.com/badrequests/wrongid.html';
                 header('Location: ' . $url, true, 301);
+
                 // すべての出力を終了
                 exit;
     }
@@ -240,6 +265,7 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
     //赤にした画像を、ちょっとずらして透明にして重ねる
     imagecopymerge($image2, $image4, -8, -2, 0, 0, 400, 400, 60);
     imagedestroy($image4);
+
     //コピーする画像2枚目を取得(黄色)
     $designImage = "./img/frame".$_POST['radio'].".png";
     $frame_im = imagecreatefrompng($designImage);
@@ -251,6 +277,7 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
     if(!file_exists($dir)){
         mkdir($dir, 0777, true);
     }
+
     $filename = sha1(microtime() . $_SERVER['REMOTE_ADDR']) . $ext;
     $saveTo = rtrim($dir, '/\\') . '/' . $filename;
  
@@ -262,19 +289,23 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
     } else if($ext == '.gif'){
         imagegif($image2, $saveTo);
     }
+
     #データベースに登録
     $action = new getFormAction();
     $action->saveDbPostData($_POST);
+
     // print("<img src=\"{$saveTo}\">");
     echo "<img src =\"$saveTo\">";
     
     // 読み出したファイルは消去
     imagedestroy($image1);
     imagedestroy($image2);
+
     return $saveTo;
 }
 class getFormAction {
     public $pdo;
+
     /**
      * コネクション確保
      */
@@ -290,6 +321,7 @@ class getFormAction {
      * 記事データをDBに保存
      */
     function saveDbPostData($data){
+
         // データの保存
         $smt = $this->pdo->prepare('insert into users (TwitterID) values(:TwitterID)');
         $smt->bindParam(':TwitterID',$data['params_a'], PDO::PARAM_STR);
