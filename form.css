@@ -232,3 +232,7 @@ ul.image_list li .image_box {
 .btn:hover {
     text-shadow: -6px 0px 15px rgba(255, 255, 240, 0.83), 6px 0px 15px rgba(255, 255, 240, 0.83);
 }
+
+.yes_no{
+    font-size: 12px;
+}
