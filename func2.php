@@ -23,60 +23,50 @@ function uploadImage($tmpName, $dir, $width2, $height2){
         // すべての出力を終了
         exit;
     }
-
     // 加工前の画像の情報を取得
     list($width1, $height1) = getimagesize($tmpName);
-
     // 新しくリサイズする画像を作成
     $image2 =imagecreatetruecolor($width2, $height2);
- 
-    //グレースケールを利用する場合は以下のコードを実行する。
-    // imagecopyresampled($image2, $image1, 0, 0, 0, 0, $width2, $height2, $width1, $height1);
 
-    // if($image2 && imagefilter($image2, IMG_FILTER_GRAYSCALE)){
-    //     echo '変換成功';
-    //     imagepng($image2, 'sample_IMG_FILTER_GRAYSCALE.png');
-    // }else{
-    //     echo '変換失敗';
-    // }
-
-    // 青緑にする用の画像を作成
+    // 青緑にする用の画像を作成；
     $image3 = imagecreatetruecolor($width2, $height2);
- 
     imagecopyresampled($image3, $image1, 0, 0, 0, 0, $width2, $height2, $width1, $height1);
 
-    if($image3 && imagefilter($image3, IMG_FILTER_COLORIZE, 0, 255, 255)){
-    //PNG イメージを青緑にしてブラウザまたはファイルに出力する
-    echo 'IMG_FILTER_COLORIZE変換成功';
+    if($image3 && imagefilter($image3, IMG_FILTER_COLORIZE, 0, 255, 195)){
+
     //第２引数は、ファイルの保存先のパス
     imagepng($image3, 'sample_COLORIZE.png');
     //画像を破棄する（保持するメモリを解放）
     } else {
-    echo 'IMG_FILTER_COLORIZE変換失敗';
-    }
 
+    	   // リダイレクト先のURLへ転送する
+        $url = 'https://iinamiring.com/badrequests/404.html';
+        header('Location: ' . $url, true, 301);
+        // すべての出力を終了
+        exit;
+    }
     // 赤にするようの画像を作成
     $image4 = imagecreatetruecolor($width2, $height2);
     imagecopyresampled($image4, $image1, 0, 0, 0, 0, $width2, $height2, $width1, $height1);
-
     if($image4 && imagefilter($image4, IMG_FILTER_COLORIZE, 255, 0, 0)){
-    //PNG イメージを赤くしてブラウザまたはファイルに出力する
-    echo 'IMG_FILTER_COLORIZE変換成功';
+
     //第２引数は、ファイルの保存先のパス
     imagepng($image4, 'sample_COLORIZE.png');
     //画像を破棄する（保持するメモリを解放）
     } else {
-    echo 'IMG_FILTER_COLORIZE変換失敗';
+
+    	   // リダイレクト先のURLへ転送する
+        $url = 'https://iinamiring.com/badrequests/404.html';
+        header('Location: ' . $url, true, 301);
+        // すべての出力を終了
+        exit;
     }
-
     //青緑にした画像を、ちょっとずらして透明にして重ねる
-    imagecopymerge($image2, $image3, -8, -8, 0, 0, 400, 400, 50);
+    imagecopymerge($image2, $image3, 12, 2, 0, 0, 400, 400, 90);
     imagedestroy($image3);
-
     //赤にした画像を、ちょっとずらして透明にして重ねる
-    imagecopymerge($image2, $image4, 8, 8, 0, 0, 400, 400, 50);
+    imagecopymerge($image2, $image4, -8, -2, 0, 0, 400, 400, 60);
     imagedestroy($image4);
-
 
     //コピーする画像2枚目を取得(黄色)
     $designImage = "./img/frame".$_POST['radio'].".png";
@@ -87,7 +77,6 @@ function uploadImage($tmpName, $dir, $width2, $height2){
     imagedestroy($frame_im);
 
     // imagepng( $image2, "final.png"); //PNG画像で保存する場合
-
     if(!file_exists($dir)){
         mkdir($dir, 0777, true);
     }
@@ -141,16 +130,12 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
 
     // パラメータAとパラメータBを合成してパラメータCを作る
     $params_c = array_merge( $params_a , $params_b ) ;
-
     // 連想配列をアルファベット順に並び替える
     ksort( $params_c ) ;
-
     // パラメータの連想配列を[キー=値&キー=値...]の文字列に変換する
     $request_params = http_build_query( $params_c , '' , '&' ) ;
-
     // 一部の文字列をフォロー
     $request_params = str_replace( array( '+' , '%7E' ) , array( '%20' , '~' ) , $request_params ) ;
-
     // 変換した文字列をURLエンコードする
     $request_params = rawurlencode( $request_params ) ;
 
@@ -166,13 +151,10 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
 
     // キー[$signature_key]とデータ[$signature_data]を利用して、HMAC-SHA1方式のハッシュ値に変換する
     $hash = hash_hmac( 'sha1' , $signature_data , $signature_key , TRUE ) ;
-
     // base64エンコードして、署名[$signature]が完成する
     $signature = base64_encode( $hash ) ;
-
     // パラメータの連想配列、[$params]に、作成した署名を加える
     $params_c['oauth_signature'] = $signature ;
-
     // パラメータの連想配列を[キー=値,キー=値,...]の文字列に変換する
     $header_params = http_build_query( $params_c , '' , ',' ) ;
 
@@ -241,14 +223,48 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
                 // すべての出力を終了
                 exit;
     }
-
     // 加工前の画像の情報を取得
     list($width1, $height1) = getimagesize($square_url);
     // 新しくリサイズする画像を作成
-
     $image2 = imagecreatetruecolor($width2, $height2);
- 
-    imagecopyresampled($image2, $image1, 0, 0, 0, 0, $width2, $height2, $width1, $height1);
+
+        // 青緑にする用の画像を作成；
+    $image3 = imagecreatetruecolor($width2, $height2);
+    imagecopyresampled($image3, $image1, 0, 0, 0, 0, $width2, $height2, $width1, $height1);
+
+    if($image3 && imagefilter($image3, IMG_FILTER_COLORIZE, 0, 255, 195)){
+
+    //第２引数は、ファイルの保存先のパス
+    imagepng($image3, 'sample_COLORIZE.png');
+    //画像を破棄する（保持するメモリを解放）
+    } else {
+    	   // リダイレクト先のURLへ転送する
+        $url = 'https://iinamiring.com/badrequests/404.html';
+        header('Location: ' . $url, true, 301);
+        // すべての出力を終了
+        exit;
+    }
+    // 赤にするようの画像を作成
+    $image4 = imagecreatetruecolor($width2, $height2);
+    imagecopyresampled($image4, $image1, 0, 0, 0, 0, $width2, $height2, $width1, $height1);
+    if($image4 && imagefilter($image4, IMG_FILTER_COLORIZE, 255, 0, 0)){
+
+    //第２引数は、ファイルの保存先のパス
+    imagepng($image4, 'sample_COLORIZE.png');
+    //画像を破棄する（保持するメモリを解放）
+    } else {
+    	   // リダイレクト先のURLへ転送する
+        $url = 'https://iinamiring.com/badrequests/404.html';
+        header('Location: ' . $url, true, 301);
+        // すべての出力を終了
+        exit;
+    }
+    //青緑にした画像を、ちょっとずらして透明にして重ねる
+    imagecopymerge($image2, $image3, 12, 2, 0, 0, 400, 400, 90);
+    imagedestroy($image3);
+    //赤にした画像を、ちょっとずらして透明にして重ねる
+    imagecopymerge($image2, $image4, -8, -2, 0, 0, 400, 400, 60);
+    imagedestroy($image4);
 
     //コピーする画像2枚目を取得(黄色)
     $designImage = "./img/frame".$_POST['radio'].".png";
@@ -287,7 +303,6 @@ function changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $acc
 
     return $saveTo;
 }
-
 class getFormAction {
     public $pdo;
 
@@ -313,4 +328,3 @@ class getFormAction {
         $smt->execute();
     }
 }
-
