@@ -32,10 +32,10 @@
 			$dir = 'user_pictures/' . $now->format('Y/m/d');
 			$width2 = 400;
 			$height2 = 400;
-				$api_key = 'hw9RYRWXJrgpxDpjWJEx685gs' ;		// APIキー
-				$api_secret = 'Xnm8TYtcytYUgkCPaAwezEK58aG2s4vwB8lYx6rX5l1s15o5Fo' ;		// APIシークレット
-				$access_token = '891590595432423429-yKLleh014H4Q4Tjvz8L8P5otk4ZgSrm' ;		// アクセストークン
-				$access_token_secret = 'ueqQYmgl7I4crCIyuSA02rcJLDPfTrzMDciAdugsRFUSh' ;		// アクセストークンシークレット
+				$api_key = '' ;		// APIキー
+				$api_secret = '' ;		// APIシークレット
+				$access_token = '' ;		// アクセストークン
+				$access_token_secret = '' ;		// アクセストークンシークレット
 				$path = changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $access_token, $access_token_secret);
 			}else{
 				// リダイレクト先のURLへ転送する
