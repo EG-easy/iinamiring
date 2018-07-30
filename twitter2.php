@@ -16,7 +16,7 @@
 
 	<div class ="showimage">
 		<p><?php
-		if($_POST['radio_effect']==1){
+		if($_POST['radio_effect']==2){
 			require "func.php";
 		if($_SERVER["REQUEST_METHOD"] === 'POST' && !empty($_POST['params_a']) && !empty($_POST['radio'])){
 
@@ -32,10 +32,10 @@
 			$dir = 'user_pictures/' . $now->format('Y/m/d');
 			$width2 = 400;
 			$height2 = 400;
-				$api_key = '' ;		// APIキー
-				$api_secret = '' ;		// APIシークレット
-				$access_token = '' ;		// アクセストークン
-				$access_token_secret = '' ;		// アクセストークンシークレット
+				$api_key = 'hw9RYRWXJrgpxDpjWJEx685gs' ;		// APIキー
+				$api_secret = 'Xnm8TYtcytYUgkCPaAwezEK58aG2s4vwB8lYx6rX5l1s15o5Fo' ;		// APIシークレット
+				$access_token = '891590595432423429-yKLleh014H4Q4Tjvz8L8P5otk4ZgSrm' ;		// アクセストークン
+				$access_token_secret = 'ueqQYmgl7I4crCIyuSA02rcJLDPfTrzMDciAdugsRFUSh' ;		// アクセストークンシークレット
 				$path = changeTwitterImage($dir, $width2, $height2, $api_key, $api_secret, $access_token, $access_token_secret);
 			}else{
 				// リダイレクト先のURLへ転送する
@@ -45,7 +45,8 @@
 				// すべての出力を終了
 				exit;
 
-			}else{
+			}
+		}else{
 				require "func2.php";
 		if($_SERVER["REQUEST_METHOD"] === 'POST' && !empty($_POST['params_a']) && !empty($_POST['radio'])){
 

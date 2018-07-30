@@ -15,7 +15,7 @@
 
     <div class = "showimage">
         <p><?php
-         if($_POST['radio_effect']==1){
+         if($_POST['radio_effect']==2){
          	 require "func.php";
             if($_SERVER["REQUEST_METHOD"] === 'POST' && !empty($_FILES['image']['tmp_name']) && !empty($_POST['radio'])){
                 $now = new DateTime();
